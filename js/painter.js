@@ -40,10 +40,20 @@ Painter.prototype = {
 	setPen: function() {
 	    this.ctx.lineJoin = this.config.lineJoin;
 	    this.ctx.lineCap = 'round';
-	    this.ctx.strokeStyle = this.config.strokeStyle;
 	    this.ctx.shadowBlur = this.config.shadowBlur;
 	    this.ctx.shadowColor = this.config.shadowColor;
 	    this.ctx.shadowOffsetX = 0;
+	    // Create gradients
+		var lingrad2 = this.ctx.createLinearGradient(0,0,this.config.boardW,this.config.boardH);
+  		lingrad2.addColorStop(0.5, 'red');
+  		lingrad2.addColorStop(1, 'yellow');
+	    this.ctx.strokeStyle = lingrad2;
+	    this.ctx.globalAlpha = 0.4;
+    // context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
+	    // this.ctx.strokeRect(50,50,50,50);
+	    // this.ctx.strokeRect(50,50,50,50);
+
+
 	    // this.ctx.globalAlpha = 0.8;
 	},
 	// setSize() {

@@ -40,21 +40,24 @@ Painter.prototype = {
 	setPen: function() {
 	    this.ctx.lineJoin = this.config.lineJoin;
 	    this.ctx.lineCap = 'round';
-	    this.ctx.shadowBlur = this.config.shadowBlur;
-	    this.ctx.shadowColor = this.config.shadowColor;
-	    this.ctx.shadowOffsetX = 0;
+	    this.ctx.shadowBlur = 0;
+	    this.ctx.shadowColor = 'yellow';
+	    this.ctx.shadowOffsetX = 15;
+	    this.ctx.shadowOffsetY = 0;
+	    // this.ctx.globalAlpha = 0.8;
+
+	    this.ctx.strokeStyle = "red";
 	    // Create gradients
-		var lingrad2 = this.ctx.createLinearGradient(0,0,this.config.boardW,this.config.boardH);
-  		lingrad2.addColorStop(0.5, 'red');
-  		lingrad2.addColorStop(1, 'yellow');
-	    this.ctx.strokeStyle = lingrad2;
-	    this.ctx.globalAlpha = 0.4;
+		// var lingrad2 = this.ctx.createLinearGradient(0,0,this.config.boardW,this.config.boardH);
+  // 		lingrad2.addColorStop(0.5, 'red');
+  // 		lingrad2.addColorStop(1, 'yellow');
+	 //    this.ctx.strokeStyle = lingrad2;
+	    // this.ctx.globalAlpha = 0.4;
     // context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
 	    // this.ctx.strokeRect(50,50,50,50);
 	    // this.ctx.strokeRect(50,50,50,50);
 
 
-	    // this.ctx.globalAlpha = 0.8;
 	},
 	// setSize() {
 	// 	var docElRect = document.documentElement.getBoundingClientRect();
@@ -170,7 +173,10 @@ Painter.prototype = {
 		this.cva = document.getElementById(this.info.layer);
 		
 		this.ctx = this.cva.getContext('2d');
-
+		var crayonBackgroundImage = new Image();
+		crayonBackgroundImage.onload = function() { resourceLoaded(); 
+	};
+	crayonBackgroundImage.src = "images/crayon-background.png";
 		this.initData();
 		this.setConfig();
 		this.setWH();
